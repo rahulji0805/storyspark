@@ -4,7 +4,6 @@
 
 StorySpark is a minimal, beautiful journaling web app that helps you capture daily wins, track your mood, build streaks, and watch your personal story unfold over time.
 
-![StorySpark Preview](https://via.placeholder.com/1200x600/f97f0a/ffffff?text=StorySpark)
 
 ## Features
 

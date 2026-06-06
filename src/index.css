@@ -1,69 +1,169 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap');
 
-@layer base {
-  * {
-    @apply transition-colors duration-200;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply font-body antialiased;
-    @apply bg-stone-50 text-stone-900;
-    @apply dark:bg-[#0f0e0d] dark:text-stone-100;
-  }
-
-  ::selection {
-    @apply bg-spark-300 text-stone-900;
-  }
+:root {
+  /* Light Mode — Ivory editorial */
+  --bg-primary: #F7F5F0;
+  --bg-secondary: #EFECEA;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F0EDE8;
+  --text-primary: #1A1714;
+  --text-secondary: #6B6560;
+  --text-muted: #A09890;
+  --accent: #B8860B;
+  --accent-light: #D4A017;
+  --accent-glow: rgba(184, 134, 11, 0.15);
+  --border: rgba(26, 23, 20, 0.1);
+  --border-strong: rgba(26, 23, 20, 0.2);
+  --shadow-sm: 0 1px 4px rgba(26, 23, 20, 0.06);
+  --shadow-md: 0 4px 20px rgba(26, 23, 20, 0.08);
+  --shadow-lg: 0 12px 48px rgba(26, 23, 20, 0.12);
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
-@layer components {
-  .card {
-    @apply rounded-2xl border border-stone-200 bg-white shadow-sm;
-    @apply dark:border-stone-800 dark:bg-stone-900;
-  }
+.dark {
+  --bg-primary: #0E0C0A;
+  --bg-secondary: #161310;
+  --bg-card: #1C1916;
+  --bg-hover: #242018;
+  --text-primary: #F0ECE4;
+  --text-secondary: #9A9188;
+  --text-muted: #5C5650;
+  --accent: #C9972A;
+  --accent-light: #E0AD40;
+  --accent-glow: rgba(201, 151, 42, 0.2);
+  --border: rgba(240, 236, 228, 0.08);
+  --border-strong: rgba(240, 236, 228, 0.15);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
 
-  .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-xl bg-spark-500 px-5 py-2.5 text-sm font-medium text-white;
-    @apply hover:bg-spark-600 active:scale-95 transition-all duration-150;
-    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium;
-    @apply text-stone-600 hover:bg-stone-100 hover:text-stone-900;
-    @apply dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100;
-    @apply active:scale-95 transition-all duration-150;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  .input {
-    @apply w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm;
-    @apply placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-spark-400 focus:border-transparent;
-    @apply dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500;
-    @apply dark:focus:ring-spark-500;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
 
-  .tag {
-    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium;
-  }
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--grain);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 1;
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-mono {
+  font-family: 'DM Mono', monospace;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { @apply bg-transparent; }
-::-webkit-scrollbar-thumb { @apply bg-stone-300 rounded-full dark:bg-stone-700; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
-/* Quill-like textarea autogrow feel */
-textarea { resize: none; }
-
-/* Streak fire animation */
-@keyframes flicker {
-  0%, 100% { transform: scale(1) rotate(-2deg); }
-  50% { transform: scale(1.1) rotate(2deg); }
+/* Selection */
+::selection {
+  background: var(--accent-glow);
+  color: var(--text-primary);
 }
-.streak-fire { animation: flicker 1.5s ease-in-out infinite; }
+
+/* Transitions */
+* {
+  transition-property: background-color, border-color, color, opacity, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 1.5px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Link reset */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Button reset */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Input reset */
+input, textarea {
+  font-family: inherit;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+/* Gold rule */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  width: 100%;
+  opacity: 0.4;
+}
+
+/* Page enter animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--text-primary) 0%, var(--accent) 50%, var(--text-primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
