@@ -31,7 +31,7 @@ StorySpark is a minimal, beautiful journaling web app that helps you capture dai
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/storyspark.git
+git clone https://github.com/rahulji0805/storyspark.git
 cd storyspark
 ```
 
